@@ -1,3 +1,8 @@
+## For Assignment Assessors
+The html file is [PA1_template.html](./PA1_template.html)
+
+The RMarkdown file is [PA1_template.Rmd](./PA1_template.Rmd)
+
 ## Introduction
 
 It is now possible to collect a large amount of data about personal
