@@ -154,7 +154,7 @@ stepsPerIntervalFaceted <- ddply(activityImputed,
                                  meanSteps = mean(steps))
 ```
 
-This showed that there was more focused activity during the weekday around the 8:00 am hour (probably a dailly workout) but the weekend spread the activity out over the day (probably not sitting at a desk like durin the week).
+This showed that there was more focused activity during the weekday around the 8:00 am hour (probably a dailly workout) but the weekend spread the activity out over the day (probably not sitting at a desk like during the week).
 ```{r plot_faceted_data, fig.width=8}
 ggplot(data = stepsPerIntervalFaceted,
        aes(x = interval,
