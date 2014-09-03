@@ -230,7 +230,7 @@ activity &lt;- fread(&quot;./activity.csv&quot;)
 activity$date &lt;- ymd(activity$date) #Now we have POSIXct class dates
 </code></pre>
 
-<p>This dataset has a total of 17568 rows.</p>
+<p>This dataset has a total of 17,568 rows.</p>
 
 <h2>What is mean total number of steps taken per day?</h2>
 
@@ -280,7 +280,7 @@ stepsPerDay &lt;- ddply(activity, &quot;date&quot;, summarize,
 medianSteps = median(stepsPerDay$totalSteps, na.rm = TRUE)
 </code></pre>
 
-<p>The mean number of steps was 10766, and the median was 10765.</p>
+<p>The mean number of steps was 10,766, and the median was 10,765.</p>
 
 <h2>What is the average daily activity pattern?</h2>
 
@@ -317,7 +317,7 @@ medianSteps = median(stepsPerDay$totalSteps, na.rm = TRUE)
 <pre><code class="r">missingValues = sum(!complete.cases(activity$steps))
 </code></pre>
 
-<p>There were 2304 to be exact. And some entire days have no values for steps taken. So imputing values required some thought. I decided that I would take the mean number of steps for that time interval and day of the week and use that to impute the missing values into the activity data.</p>
+<p>There were 2,304 to be exact. And some entire days have no values for steps taken. So imputing values required some thought. I decided that I would take the mean number of steps for that time interval and day of the week and use that to impute the missing values into the activity data.</p>
 
 <pre><code class="r"># Step 12 - We need a couple of convenience functions, one will calculate
 #           whether a date falls on the weekend and the other will 
@@ -397,11 +397,11 @@ medianStepsImputed = median(stepsPerDayImputed$totalSteps)
 </code></pre>
 
 <p>The imputation raised those a little bit but not too bad:<br/>
-Mean Before Imputation: 10766<br/>
-Mean After ImputationL: 10821  </p>
+Mean Before Imputation: 10,766<br/>
+Mean After Imputation: 10,821  </p>
 
-<p>Median Before Imputation: 10765<br/>
-Mediam After Imputation: 11015  </p>
+<p>Median Before Imputation: 10,765<br/>
+Mediam After Imputation: 11,015  </p>
 
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
 

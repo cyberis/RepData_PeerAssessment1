@@ -24,7 +24,7 @@ if(file.exists("./activity.zip") & !file.exists("./activity.csv")) {
 activity <- fread("./activity.csv")
 activity$date <- ymd(activity$date) #Now we have POSIXct class dates
 ```
-This dataset has a total of `r nrow(activity)` rows.
+This dataset has a total of `r format(nrow(activity), big.mark = ",")` rows.
 
 ## What is mean total number of steps taken per day?
 The assignment calls for a histogram to show the distribution of the total number of steps per day. I created that histogram but also created a bar chart to show by day the total number of steps taken so I could see how the missing data affects those totals.
@@ -69,7 +69,7 @@ From this data, a mean and median was calculated over the total steps per day fo
 meanSteps = mean(stepsPerDay$totalSteps, na.rm = TRUE)
 medianSteps = median(stepsPerDay$totalSteps, na.rm = TRUE)
 ```
-The mean number of steps was `r format(meanSteps, digits = 3, scientific = FALSE)`, and the median was `r medianSteps`.
+The mean number of steps was `r format(meanSteps, digits = 3, scientific = FALSE, big.mark = ",")`, and the median was `r format(medianSteps, big.mark = ",")`.
 
 ## What is the average daily activity pattern?
 We can also analyze the data according to five minute time interval.
@@ -100,7 +100,7 @@ This activity data, as most data, had quite a few missing values
 ```{r missing_value_count}
 missingValues = sum(!complete.cases(activity$steps))
 ```
-There were `r missingValues` to be exact. And some entire days have no values for steps taken. So imputing values required some thought. I decided that I would take the mean number of steps for that time interval and day of the week and use that to impute the missing values into the activity data.
+There were `r format(missingValues, big.mark = ",")` to be exact. And some entire days have no values for steps taken. So imputing values required some thought. I decided that I would take the mean number of steps for that time interval and day of the week and use that to impute the missing values into the activity data.
 ```{r imputation, warning=FALSE, cache=TRUE}
 # Step 12 - We need a couple of convenience functions, one will calculate
 #           whether a date falls on the weekend and the other will 
@@ -176,11 +176,11 @@ medianStepsImputed = median(stepsPerDayImputed$totalSteps)
 ```
 
 The imputation raised those a little bit but not too bad:  
-Mean Before Imputation: `r format(meanSteps, scientific = FALSE)`  
-Mean After ImputationL: `r format(meanStepsImputed, scientific = FALSE)`  
+Mean Before Imputation: `r format(meanSteps, scientific = FALSE, big.mark = ",")`  
+Mean After Imputation: `r format(meanStepsImputed, scientific = FALSE, big.mark = ",")`  
 
-Median Before Imputation: `r format(medianSteps, scientific = FALSE)`  
-Mediam After Imputation: `r format(medianStepsImputed, scientific = FALSE)`  
+Median Before Imputation: `r format(medianSteps, scientific = FALSE, big.mark = ",")`  
+Mediam After Imputation: `r format(medianStepsImputed, scientific = FALSE, big.mark = ",")`  
 
 ## Are there differences in activity patterns between weekdays and weekends?
 When I created the imputed data set I also appended a factor that marked out which activity occurred on weekdays and which on weekends.

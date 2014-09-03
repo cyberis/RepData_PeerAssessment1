@@ -26,7 +26,7 @@ if(file.exists("./activity.zip") & !file.exists("./activity.csv")) {
 activity <- fread("./activity.csv")
 activity$date <- ymd(activity$date) #Now we have POSIXct class dates
 ```
-This dataset has a total of 17568 rows.
+This dataset has a total of 17,568 rows.
 
 ## What is mean total number of steps taken per day?
 The assignment calls for a histogram to show the distribution of the total number of steps per day. I created that histogram but also created a bar chart to show by day the total number of steps taken so I could see how the missing data affects those totals.
@@ -79,7 +79,7 @@ From this data, a mean and median was calculated over the total steps per day fo
 meanSteps = mean(stepsPerDay$totalSteps, na.rm = TRUE)
 medianSteps = median(stepsPerDay$totalSteps, na.rm = TRUE)
 ```
-The mean number of steps was 10766, and the median was 10765.
+The mean number of steps was 10,766, and the median was 10,765.
 
 ## What is the average daily activity pattern?
 We can also analyze the data according to five minute time interval.
@@ -116,7 +116,7 @@ This activity data, as most data, had quite a few missing values
 ```r
 missingValues = sum(!complete.cases(activity$steps))
 ```
-There were 2304 to be exact. And some entire days have no values for steps taken. So imputing values required some thought. I decided that I would take the mean number of steps for that time interval and day of the week and use that to impute the missing values into the activity data.
+There were 2,304 to be exact. And some entire days have no values for steps taken. So imputing values required some thought. I decided that I would take the mean number of steps for that time interval and day of the week and use that to impute the missing values into the activity data.
 
 ```r
 # Step 12 - We need a couple of convenience functions, one will calculate
@@ -201,11 +201,11 @@ medianStepsImputed = median(stepsPerDayImputed$totalSteps)
 ```
 
 The imputation raised those a little bit but not too bad:  
-Mean Before Imputation: 10766  
-Mean After ImputationL: 10821  
+Mean Before Imputation: 10,766  
+Mean After Imputation: 10,821  
 
-Median Before Imputation: 10765  
-Mediam After Imputation: 11015  
+Median Before Imputation: 10,765  
+Mediam After Imputation: 11,015  
 
 ## Are there differences in activity patterns between weekdays and weekends?
 When I created the imputed data set I also appended a factor that marked out which activity occurred on weekdays and which on weekends.
