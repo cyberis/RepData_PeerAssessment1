@@ -1,7 +1,7 @@
 # Analysis.R - Script that does the analysis for the project
 # Submitted by Christopher Bortz
-# For Reproducible Research Section 5 - Dr. Roger Peng
-# August 4 - September 1, 2014
+# For Reproducible Research Section 6 - Dr. Roger Peng
+# September 1 - 29, 2014
 # Course Project 1 - Activity Monitoring
 
 # Step 1 - Setup our environment
@@ -21,12 +21,26 @@ activity <- fread("./activity.csv")
 # Step 4 - Transform Data (make activity$date a date vice a char)
 activity$date <- ymd(activity$date) #Now we have POSIXct class dates
 
-# Step 5 - Summarize the total number and average steps per day
-stepsPerDay <- ddply(activity, "date", summarize,
-                     totalSteps = sum(steps),
-                     meanSteps = mean(steps, na.rm = TRUE))
+# Step 5 - Summarize the total steps per day
+# This will be for the histogram
+stepsPerDayNoNa <- ddply(na.omit(activity), "date", summarize,
+                         totalSteps = sum(steps))
 
-# Step 6 - Plot the total number of steps per day
+# This will be for the bar chart (not required but nice)
+stepsPerDay <- ddply(activity, "date", summarize,
+                     totalSteps = sum(steps))
+
+# Step 6 - Plot the total number of steps per day as a histogram and bar chart
+ggplot(data = stepsPerDayNoNa,
+       aes(x = totalSteps)) + 
+    geom_histogram(fill = "chartreuse4", colour = "black", binwidth = 3000) +
+    xlab("Total Steps Taken") +
+    ylab("Count") + 
+    ggtitle(paste("Distribution of Total Steps Taken\n", 
+            "With Missing Data Removed\n", 
+            "(Oct - Nov, 2012)"))
+
+
 ggplot(data = stepsPerDay,
        aes(x = date,
            y = totalSteps)) + 
@@ -96,12 +110,21 @@ activityImputed <- ddply(activity,
 # ddply reorders according to grouping so we need to restore the original order
 activityImputed <- arrange(activityImputed, date, interval) 
 
-# Step 14 - Summarize the total number and average steps per day imputed
+# Step 14 - Summarize the total steps per day imputed
 stepsPerDayImputed <- ddply(activityImputed, "date", summarize,
-                            totalSteps = sum(steps),
-                            meanSteps = mean(steps, na.rm = TRUE))
+                            totalSteps = sum(steps))
 
-# Step 15 - Plot the total number of steps per day with imputed values
+# Step 15 - Plot the total number of steps per day with imputed values as histogram and bar chart
+ggplot(data = stepsPerDayImputed,
+       aes(x = totalSteps)) + 
+    geom_histogram(fill = "chartreuse4", colour = "black", binwidth = 3000) +
+    xlab("Total Steps Taken") +
+    ylab("Count") + 
+    ggtitle(paste("Distribution of Total Steps Taken\n", 
+                  "With Missing Data Imputed\n", 
+                  "(Oct - Nov, 2012)"))
+
+
 ggplot(data = stepsPerDayImputed,
        aes(x = date,
            y = totalSteps)) + 

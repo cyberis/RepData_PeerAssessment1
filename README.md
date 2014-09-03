@@ -1,7 +1,11 @@
 ## For Assignment Assessors
-The html file is [PA1_template.html](./PA1_template.html)
+Please note that the assignment includes both histograms and bar chart plots of total steps before and after imputation. The histograms were created because the assignment requires it but the bar charts give a better picture of the data and so I included them.
+
+The markdwon file is [PA1_template.md](./PA1_template.md)
 
 The RMarkdown file is [PA1_template.Rmd](./PA1_template.Rmd)
+
+The html file is [PA1_template.html](./PA1_template.html)
 
 ## Introduction
 
